@@ -26,5 +26,12 @@
 
 }
 .content2 {
-    font-family:'Meie Script', cursive;
+    font-size: 1rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.correct {
+    mask-image: url(../images/happyDumbledore.jpg);
+}
+.incorrect {
+    background: url(../images/madSnape.jpg);
 }

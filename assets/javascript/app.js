@@ -14,7 +14,7 @@ $(document).ready(function () {
         },
         {
             q: "What language does Harry speak other than english?",
-            op: ["Yiddish", "parseltongue", "klingon", "xhosa"],
+            op: ["yiddish", "parseltongue", "klingon", "xhosa"],
             a: 1
         },
         {
@@ -94,10 +94,10 @@ $(document).ready(function () {
         const userGuess = $(this).attr("data-index");
         if (userGuess == questions[currentQuestionId].a) {
             correct++;
-            alert("correct: " + correct);
+           $("#correct").text("correct: " + correct);
         } else {
             incorrect++;
-            alert("incorrect: " + incorrect);
+            alert($("#incorrect")).text("incorrect: " + incorrect);
         }
         if (correct + incorrect === questions.length) {
             displayQuestion();
