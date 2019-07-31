@@ -11,17 +11,31 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Bahianita|Kaushan+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bahianita|Kaushan+Script|Meie+Script|Satisfy&display=swap"
+        rel="stylesheet">
 </head>
 
 <body class="background">
 
     <div class="container">
         <script src="./assets/javascript/app.js"></script>
-        <row class="header">Hogwarts Acceptance Test</row>
-        <row id="questionBox"></row>
-    </div>
-    <!--div class="form-check">
+        <div>
+            <row class="header">Hogwarts Acceptance Test</row>
+        </div>
+        <div>
+            <row class="startQuiz">
+                <button id="beginQuiz" type="button" class="btn btn-outline-light btn-lg btn-block btn-huge">The
+                    Wizarding World awaits...</button>
+            </row>
+        </div>
+
+        <div class="content">
+            <row class="content1" id="questionBox"></row>
+            <row class="content2" id="answerBox"></row>
+
+
+        </div>
+        <!--div class="form-check">
         <input class="form-check-input position-static" type="radio" name="blankRadio" id="blankRadio1" value="option1"
             aria-label="...">
     </div>-->

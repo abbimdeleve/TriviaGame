@@ -1,36 +1,122 @@
 
 $(document).ready(function () {
-    let question;
-    let answer;
-    
-const questions = [
-    ["How did Harry's parents die?", "(a) a car crash", "(b) a high cholesterol diet", "(c) murder by Lord Voldemort","(d) an experimental spell gone wrong","(c)"],
 
-    ["What shape is Harry's scar?", "(a) heart", "(b) circle", "(c) trapezoid", "(d) lightning bolt", "(d)"],
+    const questions = [
+        {
+            q: "How did Harry's parents die?",
+            op: ["in a car crash", "a high cholesterol diet", "murder by Lord Voldemort", "an experimental spell gone wrong"],
+            a: 2
+        },
+        {
+            q: "What shape is Harry's scar?",
+            op: ["heart", "circle", "trapezoid", "lightning bolt"],
+            a: 3
+        },
+        {
+            q: "What language does Harry speak other than english?",
+            op: ["Yiddish", "parseltongue", "klingon", "xhosa"],
+            a: 1
+        },
+        {
+            q: "Fill in the blank: 'Miss Granger, __ turns should do it.'",
+            op: ["3", "17", "5", "2"],
+            a: 0
+        },
+        {
+            q: "How did Cedric Diggory breathe underwater in the Black Lake?",
+            op: ["gillyweed", "scuba gear", "bubble charm", "transfiguration"],
+            a: 3
+        },
+        {
+            q: "How many horcruxes did Lord Voldemort make?",
+            op: ["4", "7", "6", "8"],
+            a: 1
+        },
+        {
+            q: "Which of these ingredients is used in polyjuice potion?",
+            op: ["boomslang skin", "ashwinder egg", "powdered moonstone", "whiteclaw"],
+            a: 0
+        },
+        {
+            q: "How many middle names does Albus Dumbledore have?",
+            op: ["1", "2", "3", "4"],
+            a: 2
+        },
+        {
+            q: "What profession did Hermione's parents occupy?",
+            op: ["teachers", "stunt doubles", "dentists", "beekeepers"],
+            a: 2
+        },
+        {
+            q: "What advantage did Harry Potter hold over Tom Riddle?",
+            op: ["strength", "power in numbers", "hair", "love"],
+            a: 3
+        }
 
-    ["What language does Harry speak other than english?", "(a) Yiddish", "(b) parseltongue", "(c) klingon", "(d) xhosa", "(b)"],
+    ];
 
-    ["Fill in the blank: 'Miss Granger, __ turns should do it.'", "(a) 3", "(b) 17", "(c) 5", "(d) 2", "(a)"],
+    let currentQuestionId = 0
+    let correct = 0
+    let incorrect = 0
+    let counter = 15
 
-    ["How did Cedric Diggory breathe underwater in the Black Lake?", "(a) gillyweed", "(b) scuba gear", "(c) bubble charm", "(d) transfiguration", "(b)"],
+    $("#beginQuiz").on("click", startQuiz)
+    $(document).on("click", ".answers", checkAns)
 
-    ["How many horcruxes did Lord Voldemort make?", "(a) 4", "(b) 7", "(c) 6", "(d) 8", "(b)"]
 
-];
-
-console.log(questions);
-
-function startQuiz() {
-    let userAns
-    let score = 0;
-for (let i=0; i<questions.length; i++){
-    if(userAns===answer){
-        alert("You're correct");
-        score++
-    } else{
-        alert("Incorrect");
+    function nextQuestion() {
+        currentQuestionId++;
+        askQuestion()
     }
-    $("#questionBox").text(questions[i]);
-}}
-startQuiz()
+
+    function counterFunc() {
+        counter--;
+    }
+
+    function startQuiz() {
+        askQuestion();
+        setInterval(counterFunc, 1000);
+    }
+
+
+    function askQuestion() {
+        $("#questionBox").text("");
+        $("#answerBox").text("");
+        $("#questionBox").append(questions[currentQuestionId].q);
+        questions[currentQuestionId].op.forEach(function (x, i) {
+            const answerPar = $("<p class ='answers' data-index=" + i + ">" + x + "</p>");
+            $("#answerBox").append(answerPar);
+        });
+    }
+
+
+    function checkAns() {
+        const userGuess = $(this).attr("data-index");
+        if (userGuess == questions[currentQuestionId].a) {
+            correct++;
+            alert("correct: " + correct);
+        } else {
+            incorrect++;
+            alert("incorrect: " + incorrect);
+        }
+        if (correct + incorrect === questions.length) {
+            displayQuestion();
+            displayResults();
+        }
+        if (correct) {
+            nextQuestion();
+
+        }
+        // displayQuestion();
+    }
+    function displayQuestion() {
+        currentQuestionId++;
+        $("#questionBox").text("");
+        $("#answerBox").text("");
+        startQuiz();
+    }
+    function displayResults() {
+        const resultsPar = $("<p class ='results'>" + "Correct: " + correct + "Incorrect: " + incorrect + "</p>").appendTo("#questionBox");
+
+    }
 })
