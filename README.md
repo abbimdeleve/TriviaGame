@@ -1,1 +1,3 @@
 # TriviaGame
+Hogwarts Acceptance Test!
+An interactive quiz for users to test their knowledge of Harry Potter and the wizarding world...
